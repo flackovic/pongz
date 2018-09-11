@@ -19,13 +19,13 @@ class Match
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wherePlayerOne")
      * @ORM\JoinColumn(nullable=false)
      */
     private $playerOne;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wherePlayerTwo")
      * @ORM\JoinColumn(nullable=false)
      */
     private $playerTwo;
@@ -58,30 +58,6 @@ class Match
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPlayerOne(): ?User
-    {
-        return $this->playerOne;
-    }
-
-    public function setPlayerOne(?User $playerOne): self
-    {
-        $this->playerOne = $playerOne;
-
-        return $this;
-    }
-
-    public function getPlayerTwo(): ?User
-    {
-        return $this->playerTwo;
-    }
-
-    public function setPlayerTwo(?User $playerTwo): self
-    {
-        $this->playerTwo = $playerTwo;
-
-        return $this;
     }
 
     public function getPlayerOneScore(): ?int
@@ -140,6 +116,30 @@ class Match
     public function setEndedAt(\DateTimeInterface $endedAt): self
     {
         $this->endedAt = $endedAt;
+
+        return $this;
+    }
+
+    public function getPlayerOne(): ?User
+    {
+        return $this->playerOne;
+    }
+
+    public function setPlayerOne(?User $playerOne): self
+    {
+        $this->playerOne = $playerOne;
+
+        return $this;
+    }
+
+    public function getPlayerTwo(): ?User
+    {
+        return $this->playerTwo;
+    }
+
+    public function setPlayerTwo(?User $playerTwo): self
+    {
+        $this->playerTwo = $playerTwo;
 
         return $this;
     }
