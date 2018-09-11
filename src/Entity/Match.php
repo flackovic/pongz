@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
@@ -19,12 +20,16 @@ class Match
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wherePlayerOne")
      * @ORM\JoinColumn(nullable=false)
      */
     private $playerOne;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wherePlayerTwo")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -140,6 +145,26 @@ class Match
     public function setPlayerTwo(?User $playerTwo): self
     {
         $this->playerTwo = $playerTwo;
+
+        return $this;
+    }
+
+    public function getSetsPlayed()
+    {
+        return $this->playerOneScore + $this->playerTwoScore;
+    }
+
+    public function declareWinner(): self
+    {
+        if($this->playerOneScore === $this->playerTwoScore) {
+            $this->setWinner(null);
+
+            return $this;
+        }
+
+        $winner = $this->getPlayerOneScore() > $this->getPlayerTwoScore() ? $this->getPlayerOne() : $this->getPlayerTwo();
+
+        $this->setWinner($winner);
 
         return $this;
     }
