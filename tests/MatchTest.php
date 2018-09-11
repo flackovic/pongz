@@ -26,7 +26,6 @@ class MatchTest extends TestCase
         $this->match = new Match();
         $this->match->setPlayerOne($this->playerOne);
         $this->match->setPlayerTwo($this->playerTwo);
-        $this->match->setWinner($this->playerTwo);
     }
 
     public function testGetPlayerOneWillReturnInstanceOfUser()
@@ -41,6 +40,8 @@ class MatchTest extends TestCase
 
     public function testGetWinnerWillReturnInstanceOfUser()
     {
+        $this->match->setWinner($this->playerTwo);
+
         $this->assertInstanceOf(User::class, $this->match->getWinner());
     }
 
