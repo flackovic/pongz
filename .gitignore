@@ -16,3 +16,6 @@
 ###< symfony/web-server-bundle ###
 
 /.idea/
+###> friendsofphp/php-cs-fixer ###
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
