@@ -82,6 +82,85 @@ class MatchTest extends TestCase
         $this->assertNull($this->match->getWinner());
     }
 
+    public function testMatchWillHaveDefaultScoreZeroForBothPlayers()
+    {
+        $this->assertSame(0, $this->match->getPlayerOneScore());
+        $this->assertSame(0, $this->match->getPlayerTwoScore());
+    }
+
+    public function testScoreForPlayerOneWillIncreasePlayerOneScoreByOnePoint()
+    {
+        $this->match->scoreForPlayerOne();
+
+        $this->assertSame(1, $this->match->getPlayerOneScore());
+    }
+
+    public function testScoreForPlayerTwoWillIncreasePlayerTwoScoreByOnePoint()
+    {
+        $this->match->scoreForPlayerTwo();
+
+        $this->assertSame(1, $this->match->getPlayerTwoScore());
+    }
+
+    /**
+     * @dataProvider provideValidMatchScores
+     */
+    public function testIsScoreValidWillReturnTrueForValidMatchScores(int $playerOneScore, int $playerTwoScore)
+    {
+        $this->match->setPlayerOneScore($playerOneScore);
+        $this->match->setPlayerTwoScore($playerTwoScore);
+
+        $this->assertTrue($this->match->isScoreValid());
+    }
+
+    /**
+     * @dataProvider provideInvalidMatchScores
+     */
+    public function testIsScoreValidWillReturnFalseForInvalidMatchScores(int $playerOneScore, int $playerTwoScore)
+    {
+        $this->match->setPlayerOneScore($playerOneScore);
+        $this->match->setPlayerTwoScore($playerTwoScore);
+
+        $this->assertFalse($this->match->isScoreValid());
+    }
+
+    public function provideValidMatchScores()
+    {
+        return [
+            [0, 0],
+            [0, 1],
+            [0, 2],
+            [0, 3],
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [1, 3],
+            [2, 0],
+            [2, 1],
+            [2, 2],
+            [2, 3],
+            [3, 0],
+            [3, 1],
+            [3, 2],
+        ];
+    }
+
+    public function provideInvalidMatchScores()
+    {
+        return [
+            [0, -1],
+            [-1, 0],
+            [0, 4],
+            [4, 0],
+            [0, 10],
+            [10, 0],
+            [3, 3],
+            [4, 4],
+            [10, 10],
+            [1231231231231231231, 1],
+        ];
+    }
+
     /**
      * Provides match data and total sets count
      *

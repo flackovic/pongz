@@ -36,12 +36,12 @@ class Match
     /**
      * @ORM\Column(type="integer")
      */
-    private $playerOneScore;
+    private $playerOneScore = 0;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $playerTwoScore;
+    private $playerTwoScore = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
@@ -147,9 +147,37 @@ class Match
         return $this;
     }
 
+    public function scoreForPlayerOne()
+    {
+        $this->playerOneScore++;
+    }
+
+    public function scoreForPlayerTwo()
+    {
+        $this->playerTwoScore++;
+    }
+
     public function getSetsPlayed()
     {
         return $this->playerOneScore + $this->playerTwoScore;
+    }
+
+    public function isScoreValid()
+    {
+        /** There should never be more than 5 games played */
+        if (($this->playerOneScore + $this->playerTwoScore) > 5) {
+            return false;
+        }
+        /** No player should have more than 3 points, since 3 points is considered victory */
+        if($this->playerOneScore > 3 || $this->playerTwoScore > 3) {
+            return false;
+        }
+        /** Players can't have negative score */
+        if ($this->playerOneScore < 0 || $this->playerTwoScore < 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public function declareWinner(): self
