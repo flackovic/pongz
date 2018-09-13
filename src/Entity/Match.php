@@ -149,12 +149,12 @@ class Match
 
     public function scoreForPlayerOne(): void
     {
-        $this->playerOneScore++;
+        ++$this->playerOneScore;
     }
 
     public function scoreForPlayerTwo(): void
     {
-        $this->playerTwoScore++;
+        ++$this->playerTwoScore;
     }
 
     public function getSetsPlayed(): int
@@ -164,15 +164,15 @@ class Match
 
     public function isScoreValid(): bool
     {
-        /** There should never be more than 5 games played */
+        /* There should never be more than 5 games played */
         if (($this->playerOneScore + $this->playerTwoScore) > 5) {
             return false;
         }
-        /** No player should have more than 3 points, since 3 points is considered victory */
-        if($this->playerOneScore > 3 || $this->playerTwoScore > 3) {
+        /* No player should have more than 3 points, since 3 points is considered victory */
+        if ($this->playerOneScore > 3 || $this->playerTwoScore > 3) {
             return false;
         }
-        /** Players can't have negative score */
+        /* Players can't have negative score */
         if ($this->playerOneScore < 0 || $this->playerTwoScore < 0) {
             return false;
         }
@@ -182,7 +182,7 @@ class Match
 
     public function declareWinner(): self
     {
-        if($this->playerOneScore === $this->playerTwoScore) {
+        if ($this->playerOneScore === $this->playerTwoScore) {
             $this->setWinner(null);
 
             return $this;
