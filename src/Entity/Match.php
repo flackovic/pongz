@@ -147,22 +147,22 @@ class Match
         return $this;
     }
 
-    public function scoreForPlayerOne()
+    public function scoreForPlayerOne(): void
     {
         $this->playerOneScore++;
     }
 
-    public function scoreForPlayerTwo()
+    public function scoreForPlayerTwo(): void
     {
         $this->playerTwoScore++;
     }
 
-    public function getSetsPlayed()
+    public function getSetsPlayed(): int
     {
         return $this->playerOneScore + $this->playerTwoScore;
     }
 
-    public function isScoreValid()
+    public function isScoreValid(): bool
     {
         /** There should never be more than 5 games played */
         if (($this->playerOneScore + $this->playerTwoScore) > 5) {
