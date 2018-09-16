@@ -49,6 +49,11 @@ class User
      */
     private $wherePlayerTwo;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\PlayerRating", mappedBy="player", cascade={"persist", "remove"})
+     */
+    private $rating;
+
     public function __construct()
     {
         $this->wherePlayerOne = new ArrayCollection();
@@ -170,6 +175,23 @@ class User
             if ($wherePlayerTwo->getPlayerTwo() === $this) {
                 $wherePlayerTwo->setPlayerTwo(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getRating(): ?PlayerRating
+    {
+        return $this->rating;
+    }
+
+    public function setRating(PlayerRating $rating): self
+    {
+        $this->rating = $rating;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $rating->getPlayer()) {
+            $rating->setPlayer($this);
         }
 
         return $this;
