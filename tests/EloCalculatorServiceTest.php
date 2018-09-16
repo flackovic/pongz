@@ -31,14 +31,14 @@ class EloRatingTest extends TestCase
 
     /**
      * @param int $playerRating
-     * @param int $oponentRating
+     * @param int $opponentRating
      * @param float $expectedWinProbability
      *
      * @dataProvider providePlayersTransformedRatingData
      */
-    public function testCalculateExpectedOutcomeForPlayerWillReturnCorrectOutcome(int $playerRating, int $oponentRating, float $expectedWinProbability)
+    public function testCalculateExpectedOutcomeForPlayerWillReturnCorrectOutcome(int $playerRating, int $opponentRating, float $expectedWinProbability)
     {
-        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRating, $oponentRating);
+        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRating, $opponentRating);
 
         $this->assertSame($expectedWinProbability, $winProbability);
     }

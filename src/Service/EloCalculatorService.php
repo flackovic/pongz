@@ -20,12 +20,12 @@ namespace App\Service;
  * math logic from next step.
  *
  * 2. Calculates win probability based on player rating vs his opponent rating.
- * Win probability will always be in range from 0 (sure loose) to 1 (sure victory)
+ * Win probability will always be in range from 0 (sure loss) to 1 (sure victory)
  *
  * 3. Updates player rating based on current rating, win probability and actual game outcome.
  * If win probability is high, and player wins the game, new rating will be slightly bigger.
  * on the other hand, if win probability is low, and player wins, it will result in much bigger
- * rating grow. Works for looses too.
+ * rating grow. Works for losses too.
  *
  * K Factor is a constant that determines how much will match impact players rating.
  * Bigger the factor - bigger the impact from the match.
@@ -45,9 +45,9 @@ class EloCalculatorService
         return pow(10, $playerRating / 400);
     }
 
-    public function calculateWinProbabilityForPlayer(int $playerRating, int $oponentRating): float
+    public function calculateWinProbabilityForPlayer(int $playerRating, int $opponentRating): float
     {
-        $winProbability = $playerRating / ($playerRating + $oponentRating);
+        $winProbability = $playerRating / ($playerRating + $opponentRating);
 
         return round($winProbability, 2);
     }
