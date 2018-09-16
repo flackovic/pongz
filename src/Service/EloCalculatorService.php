@@ -7,6 +7,7 @@
  */
 
 namespace App\Service;
+use App\Entity\PlayerRating;
 
 /**
  * Class EloCalculatorService.
@@ -44,9 +45,9 @@ class EloCalculatorService
      *
      * @return int
      */
-    public function transformPlayerRating(int $playerRating): int
+    public function transformPlayerRating(PlayerRating $rating): int
     {
-        return pow(10, $playerRating / 400);
+        return pow(10, $rating->getValue() / 400);
     }
 
     /**
@@ -55,9 +56,9 @@ class EloCalculatorService
      *
      * @return float
      */
-    public function calculateWinProbabilityForPlayer(int $playerRating, int $opponentRating): float
+    public function calculateWinProbabilityForPlayer(PlayerRating $rating, PlayerRating $opponentRating): float
     {
-        $winProbability = $playerRating / ($playerRating + $opponentRating);
+        $winProbability = $rating->getValue() / ($rating->getValue() + $opponentRating->getValue());
 
         return round($winProbability, 2);
     }

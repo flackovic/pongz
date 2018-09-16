@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Dictionary\GameOutcomeDictionary;
+use App\Entity\PlayerRating;
 use App\Service\EloCalculatorService;
 use PHPUnit\Framework\TestCase;
 
@@ -17,14 +18,16 @@ class EloRatingTest extends TestCase
     }
 
     /**
-     * @param int $playersRating
+     * @param int $playerRatingValue
      * @param int $expectedTransformedRating
      *
      * @dataProvider providePlayersRatingData
      */
-    public function testTransformPlayerRatingWillReturnCorrectTransformedRating(int $playersRating, int $expectedTransformedRating)
+    public function testTransformPlayerRatingWillReturnCorrectTransformedRating(int $playerRatingValue, int $expectedTransformedRating)
     {
-        $transformedRating = $this->eloCalculator->transformPlayerRating($playersRating);
+        $playerRatingMock = $this->createConfiguredMock(PlayerRating::class, ['getValue' => $playerRatingValue]);
+
+        $transformedRating = $this->eloCalculator->transformPlayerRating($playerRatingMock);
 
         $this->assertSame($expectedTransformedRating, $transformedRating);
     }
@@ -36,15 +39,18 @@ class EloRatingTest extends TestCase
      *
      * @dataProvider providePlayersTransformedRatingData
      */
-    public function testCalculateExpectedOutcomeForPlayerWillReturnCorrectOutcome(int $playerRating, int $opponentRating, float $expectedWinProbability)
+    public function testCalculateExpectedOutcomeForPlayerWillReturnCorrectOutcome(int $playerRatingValue, int $opponentRatingValue, float $expectedWinProbability)
     {
-        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRating, $opponentRating);
+        $playerRatingMock = $this->createConfiguredMock(PlayerRating::class, ['getValue' => $playerRatingValue]);
+        $opponentRatingMock = $this->createConfiguredMock(PlayerRating::class, ['getValue' => $opponentRatingValue]);
+
+        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRatingMock, $opponentRatingMock);
 
         $this->assertSame($expectedWinProbability, $winProbability);
     }
 
     /**
-     * @param int $oldRating
+     * @param int $currentRating
      * @param float $winProbability
      * @param int $gameOutcome
      *
