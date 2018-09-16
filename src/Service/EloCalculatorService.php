@@ -3,15 +3,16 @@
  * Created by PhpStorm.
  * User: flackovic
  * Date: 13/09/2018
- * Time: 23:58
+ * Time: 23:58.
  */
 
 namespace App\Service;
 
 /**
- * Class EloCalculatorService
+ * Class EloCalculatorService.
  *
  * Technical details about how Elo rating is calculated
+ *
  * @url https://en.wikipedia.org/wiki/Elo_rating_system
  *
  * Calculator does 3 main things:
@@ -32,8 +33,6 @@ namespace App\Service;
  *
  * K Factor is set as 32 for now, as that is factor used for lower ranking players
  * by The United States Chess Federation.
- *
- * @package App\Service
  */
 class EloCalculatorService
 {
@@ -58,5 +57,4 @@ class EloCalculatorService
 
         return intval(round($newRating, 0));
     }
-
 }

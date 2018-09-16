@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: flackovic
  * Date: 16/09/2018
- * Time: 17:31
+ * Time: 17:31.
  */
 
 namespace App\Dictionary;
-
 
 class GameOutcomeDictionary
 {
