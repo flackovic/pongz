@@ -42,7 +42,7 @@ class EloCalculatorService
     const K_FACTOR = 32;
 
     /**
-     * @param int $playerRating
+     * @param PlayerRating $rating
      *
      * @return int
      */
@@ -52,8 +52,8 @@ class EloCalculatorService
     }
 
     /**
-     * @param int $playerRating
-     * @param int $opponentRating
+     * @param PlayerRating $rating
+     * @param PlayerRating $opponentRating
      *
      * @return float
      */
