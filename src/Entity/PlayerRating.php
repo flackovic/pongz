@@ -69,6 +69,7 @@ class PlayerRating
 
     /**
      * @param \DateTimeInterface $updatedAt
+     *
      * @return PlayerRating
      *
      * @ORM\PreUpdate()
