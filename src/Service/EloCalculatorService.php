@@ -39,11 +39,22 @@ class EloCalculatorService
     /** @var int */
     const K_FACTOR = 32;
 
+    /**
+     * @param int $playerRating
+     *
+     * @return int
+     */
     public function transformPlayerRating(int $playerRating): int
     {
         return pow(10, $playerRating / 400);
     }
 
+    /**
+     * @param int $playerRating
+     * @param int $opponentRating
+     *
+     * @return float
+     */
     public function calculateWinProbabilityForPlayer(int $playerRating, int $opponentRating): float
     {
         $winProbability = $playerRating / ($playerRating + $opponentRating);
@@ -51,10 +62,17 @@ class EloCalculatorService
         return round($winProbability, 2);
     }
 
+    /**
+     * @param int $currentRating
+     * @param $winProbability
+     * @param int $gameOutcome
+     *
+     * @return int
+     */
     public function recalculatePlayerRating(int $currentRating, $winProbability, int $gameOutcome): int
     {
         $newRating = $currentRating + self::K_FACTOR * ($gameOutcome - $winProbability);
 
-        return intval(round($newRating, 0));
+        return intval(round($newRating));
     }
 }
