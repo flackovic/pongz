@@ -41,10 +41,7 @@ class EloRatingTest extends TestCase
      */
     public function testCalculateExpectedOutcomeForPlayerWillReturnCorrectOutcome(int $playerRatingValue, int $opponentRatingValue, float $expectedWinProbability)
     {
-        $playerRatingMock = $this->createConfiguredMock(PlayerRating::class, ['getValue' => $playerRatingValue]);
-        $opponentRatingMock = $this->createConfiguredMock(PlayerRating::class, ['getValue' => $opponentRatingValue]);
-
-        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRatingMock, $opponentRatingMock);
+        $winProbability = $this->eloCalculator->calculateWinProbabilityForPlayer($playerRatingValue, $opponentRatingValue);
 
         $this->assertSame($expectedWinProbability, $winProbability);
     }

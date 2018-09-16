@@ -52,14 +52,14 @@ class EloCalculatorService
     }
 
     /**
-     * @param PlayerRating $rating
-     * @param PlayerRating $opponentRating
+     * @param int $rating
+     * @param int $opponentRating
      *
      * @return float
      */
-    public function calculateWinProbabilityForPlayer(PlayerRating $rating, PlayerRating $opponentRating): float
+    public function calculateWinProbabilityForPlayer(int $rating, int $opponentRating): float
     {
-        $winProbability = $rating->getValue() / ($rating->getValue() + $opponentRating->getValue());
+        $winProbability = $rating / ($rating + $opponentRating);
 
         return round($winProbability, 2);
     }
