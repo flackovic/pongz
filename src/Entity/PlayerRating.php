@@ -26,7 +26,7 @@ class PlayerRating
     /**
      * @ORM\Column(type="integer")
      */
-    private $value;
+    private $value = 1000;
 
     /**
      * @ORM\Column(type="datetime")
@@ -73,6 +73,7 @@ class PlayerRating
      * @return PlayerRating
      *
      * @ORM\PreUpdate()
+     * @ORM\PrePersist()
      */
     public function setUpdatedAt(): self
     {

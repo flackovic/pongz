@@ -51,11 +51,13 @@ class Match
 
     /**
      * @ORM\Column(type="datetime")
+     * @var \DateTime
      */
     private $startedAt;
 
     /**
      * @ORM\Column(type="datetime")
+     * @var \DateTime
      */
     private $endedAt;
 
@@ -194,5 +196,10 @@ class Match
         $this->setWinner($winner);
 
         return $this;
+    }
+
+    public function getMatchDuration()
+    {
+        return $this->endedAt->diff($this->startedAt)->format('%i');
     }
 }
