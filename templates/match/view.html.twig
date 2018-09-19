@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Match details{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 align="center">Match details</h1>
+
+    <div class="col-12">
+            {% include 'match/partials/match-details.html.twig' with {'match': match} %}
+    </div>
+
+</div>
+{% endblock %}

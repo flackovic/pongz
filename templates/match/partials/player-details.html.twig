@@ -1,0 +1,15 @@
+<div class="card">
+    <img class="card-img-top" src="https://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ player.username }}</h5>
+
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Rating: {{ player.getRating.value }} MR</li>
+        <li class="list-group-item">Games played: {{ player.getGamesPlayed }}</li>
+        <li class="list-group-item">Games won: {{ player.getGamesWon }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">Player details</a>
+    </div>
+</div>

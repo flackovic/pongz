@@ -198,8 +198,13 @@ class Match
         return $this;
     }
 
-    public function getMatchDuration()
+    public function getDuration()
     {
         return $this->endedAt->diff($this->startedAt)->format('%i');
+    }
+
+    public function getScore()
+    {
+        return sprintf('%d : %d', $this->playerOneScore, $this->playerTwoScore);
     }
 }

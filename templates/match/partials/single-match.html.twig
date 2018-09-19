@@ -11,9 +11,9 @@
             <span>{{ match.playerTwo.username }}</span>
         </h5>
         <p class="card-text">
-            Duration: {{ match.getMatchDuration() }} minutes
+            Duration: {{ match.getDuration() }} minutes
         </p>
-        <a href="#" class="btn btn-sm btn-success">Details</a>
+        <a href="{{ path('match_view', {'matchId': match.id}) }}" class="btn btn-sm btn-success">Details</a>
     </div>
     <div class="card-footer text-muted">
         played {{ match.endedAt|ago }}

@@ -11,7 +11,7 @@ use Faker\Factory as FakerFactory;
 
 class MatchFixtures extends Fixture implements DependentFixtureInterface
 {
-    const NUM_OF_MATCHES = 100;
+    const NUM_OF_MATCHES = 400;
 
     /** @var User[] */
     private $users;

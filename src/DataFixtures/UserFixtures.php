@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
 
             $playerRating = new PlayerRating();
             $playerRating->setPlayer($user);
+            $playerRating->setValue($faker->numberBetween(1000, 2500));
             $manager->persist($playerRating);
         }
 

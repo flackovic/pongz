@@ -50,6 +50,11 @@ class User
     private $wherePlayerTwo;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="winner")
+     */
+    private $whereWinner;
+
+    /**
      * @ORM\OneToOne(targetEntity="App\Entity\PlayerRating", mappedBy="player", cascade={"persist", "remove"})
      */
     private $rating;
@@ -195,5 +200,15 @@ class User
         }
 
         return $this;
+    }
+
+    public function getGamesPlayed()
+    {
+        return $this->getWherePlayerOne()->count() + $this->getWherePlayerTwo()->count();
+    }
+
+    public function getGamesWon()
+    {
+        return $this->whereWinner->count();
     }
 }
