@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\PlayerRating;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,6 +22,10 @@ class UserFixtures extends Fixture
             $user->setEmail($faker->email);
             $user->setActive($faker->boolean);
             $manager->persist($user);
+
+            $playerRating = new PlayerRating();
+            $playerRating->setPlayer($user);
+            $manager->persist($playerRating);
         }
 
         $manager->flush();
