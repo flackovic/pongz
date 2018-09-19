@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 use App\Dictionary\GameOutcomeDictionary;
@@ -33,8 +35,8 @@ class EloRatingTest extends TestCase
     }
 
     /**
-     * @param int $playerRating
-     * @param int $opponentRating
+     * @param int   $playerRating
+     * @param int   $opponentRating
      * @param float $expectedWinProbability
      *
      * @dataProvider providePlayersTransformedRatingData
@@ -47,9 +49,9 @@ class EloRatingTest extends TestCase
     }
 
     /**
-     * @param int $currentRating
+     * @param int   $currentRating
      * @param float $winProbability
-     * @param int $gameOutcome
+     * @param int   $gameOutcome
      *
      * @dataProvider provideRecalculatePlayerRatingData
      */
@@ -74,15 +76,15 @@ class EloRatingTest extends TestCase
     {
         return [
             [1000000, 100000, 0.91],
-            [100000, 1000000, 0.09]
+            [100000, 1000000, 0.09],
         ];
     }
-    
+
     public function providePlayersRatingData()
     {
         return [
             [2400, 1000000],
-            [2000, 100000]
+            [2000, 100000],
         ];
     }
 }

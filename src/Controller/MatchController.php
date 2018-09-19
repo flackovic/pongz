@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Match;
 use App\Repository\MatchRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class MatchController extends AbstractController
     {
         /** @var MatchRepository $matchRepository */
         $matchRepository = $em->getRepository(Match::class);
-        $matches = $matchRepository->findLatest();
+        $matches         = $matchRepository->findLatest();
 
         return $this->render('match/index.html.twig', [
             'matches' => $matches,
@@ -33,9 +34,9 @@ class MatchController extends AbstractController
     {
         /** @var MatchRepository $matchRepository */
         $matchRepository = $em->getRepository(Match::class);
-        $match = $matchRepository->findOneBy(['id' => $matchId]);
+        $match           = $matchRepository->findOneBy(['id' => $matchId]);
 
-        if(!$match) {
+        if (!$match) {
             throw new NotFoundHttpException();
         }
 

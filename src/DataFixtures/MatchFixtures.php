@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\Match;
@@ -18,9 +20,9 @@ class MatchFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $faker = FakerFactory::create();
+        $faker          = FakerFactory::create();
         $userRepository = $manager->getRepository(User::class);
-        $this->users = $userRepository->findAll();
+        $this->users    = $userRepository->findAll();
 
         for ($i = 0; $i < self::NUM_OF_MATCHES; ++$i) {
             /* Draw players, but make sure they are not same user. */
@@ -31,7 +33,7 @@ class MatchFixtures extends Fixture implements DependentFixtureInterface
 
             /** Get random date this month as start date, and add 5 - 25 minutes as ended date */
             $startedAt = $faker->dateTimeThisMonth('now');
-            $endedAt = clone $startedAt;
+            $endedAt   = clone $startedAt;
             $endedAt->add(new \DateInterval('PT'.$faker->numberBetween(5, 25).'M'));
 
             $match = new Match();
