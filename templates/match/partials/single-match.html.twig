@@ -6,12 +6,12 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">
-            <span>{{ match.playerOne.username }}</span>
+            <span>{{ match.playerOne.fullName }}</span>
             <strong>vs</strong>
-            <span>{{ match.playerTwo.username }}</span>
+            <span>{{ match.playerTwo.fullName }}</span>
         </h5>
         <p class="card-text">
-            Duration: {{ match.getDuration() }} minutes
+            Duration: {{ match.duration }} minutes
         </p>
         <a href="{{ path('match_view', {'matchId': match.id}) }}" class="btn btn-sm btn-success">Details</a>
     </div>
