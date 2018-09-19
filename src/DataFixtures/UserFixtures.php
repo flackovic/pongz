@@ -19,6 +19,7 @@ class UserFixtures extends Fixture
         for ($i = 0; $i < self::NUM_OF_USERS; ++$i) {
             $user = new User();
             $user->setUsername($faker->userName);
+            $user->setFullName(sprintf('%s %s', $faker->firstName, $faker->lastName));
             $user->setEmail($faker->email);
             $user->setActive($faker->boolean);
             $manager->persist($user);

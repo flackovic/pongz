@@ -59,6 +59,11 @@ class User
      */
     private $rating;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullName;
+
     public function __construct()
     {
         $this->wherePlayerOne = new ArrayCollection();
@@ -210,5 +215,17 @@ class User
     public function getGamesWon()
     {
         return $this->whereWinner->count();
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): self
+    {
+        $this->fullName = $fullName;
+
+        return $this;
     }
 }
