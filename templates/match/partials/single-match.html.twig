@@ -1,0 +1,21 @@
+<div class="card text-center">
+    <div class="card-header">
+        <span>{{ match.playerOneScore }}</span>
+        <strong> : </strong>
+        <span>{{ match.playerTwoScore }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <span>{{ match.playerOne.username }}</span>
+            <strong>vs</strong>
+            <span>{{ match.playerTwo.username }}</span>
+        </h5>
+        <p class="card-text">
+            Duration: {{ match.getMatchDuration() }} minutes
+        </p>
+        <a href="#" class="btn btn-sm btn-success">Details</a>
+    </div>
+    <div class="card-footer text-muted">
+        played {{ match.endedAt|ago }}
+    </div>
+</div>
