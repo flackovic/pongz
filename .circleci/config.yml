@@ -36,4 +36,4 @@ jobs:
 
      - run:
          name: PHP cs fixer
-         command: ./vendor/bin/php-cs-fixer fix --dry-run --diff
+         command: vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config=.php_cs --dry-run --diff
