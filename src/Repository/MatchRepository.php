@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Match;
@@ -30,7 +32,6 @@ class MatchRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
 
     /*
     public function findOneBySomeField($value): ?Match

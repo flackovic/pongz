@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: flackovic
@@ -10,6 +12,6 @@ namespace App\Dictionary;
 
 class GameOutcomeDictionary
 {
-    const GAME_WON = 1;
+    const GAME_WON  = 1;
     const GAME_LOST = 0;
 }

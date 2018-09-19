@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -51,12 +53,14 @@ class Match
 
     /**
      * @ORM\Column(type="datetime")
+     *
      * @var \DateTime
      */
     private $startedAt;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      * @var \DateTime
      */
     private $endedAt;
