@@ -34,6 +34,6 @@ jobs:
           name: Tests
           command: php bin/phpunit
 
-     - run:
-         name: PHP cs fixer
-         command: vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config=.php_cs --dry-run --diff
+      - run:
+          name: PHP cs fixer
+          command: vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config=.php_cs --dry-run --diff
