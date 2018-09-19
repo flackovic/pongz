@@ -14,8 +14,12 @@
 
 - Optional: seed dummy data (`php bin/console doctrine:fixtures:load`)
 
+- Serve project (`php bin/console server:run`)
 
 ## Commands Cheatsheet:
+
+#### Serve project:
+`php bin/console server:run`
 
 #### Run CS Fixer:
 `./csfix.sh`
