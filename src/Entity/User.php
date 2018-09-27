@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -48,6 +50,21 @@ class User
      * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="playerTwo")
      */
     private $wherePlayerTwo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="winner")
+     */
+    private $whereWinner;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\PlayerRating", mappedBy="player", cascade={"persist", "remove"})
+     */
+    private $rating;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullName;
 
     public function __construct()
     {
@@ -171,6 +188,45 @@ class User
                 $wherePlayerTwo->setPlayerTwo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRating(): ?PlayerRating
+    {
+        return $this->rating;
+    }
+
+    public function setRating(PlayerRating $rating): self
+    {
+        $this->rating = $rating;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $rating->getPlayer()) {
+            $rating->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function getGamesPlayed()
+    {
+        return $this->getWherePlayerOne()->count() + $this->getWherePlayerTwo()->count();
+    }
+
+    public function getGamesWon()
+    {
+        return $this->whereWinner->count();
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): self
+    {
+        $this->fullName = $fullName;
 
         return $this;
     }

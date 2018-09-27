@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
+ * @ORM\Table(name="`match`")
  */
 class Match
 {
@@ -50,11 +53,15 @@ class Match
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
     private $startedAt;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
     private $endedAt;
 
@@ -193,5 +200,15 @@ class Match
         $this->setWinner($winner);
 
         return $this;
+    }
+
+    public function getDuration()
+    {
+        return $this->endedAt->diff($this->startedAt)->format('%i');
+    }
+
+    public function getScore()
+    {
+        return sprintf('%d : %d', $this->playerOneScore, $this->playerTwoScore);
     }
 }

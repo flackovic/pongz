@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 use App\Entity\Match;
@@ -162,7 +164,7 @@ class MatchTest extends TestCase
     }
 
     /**
-     * Provides match data and total sets count
+     * Provides match data and total sets count.
      *
      * @return array
      */
@@ -179,7 +181,7 @@ class MatchTest extends TestCase
     }
 
     /**
-     * Provides match data and winner
+     * Provides match data and winner.
      *
      * @return array
      */
@@ -196,7 +198,7 @@ class MatchTest extends TestCase
     }
 
     /**
-     * Provides match data where score is a draw
+     * Provides match data where score is a draw.
      *
      * @return array
      */
